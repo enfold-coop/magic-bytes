@@ -32,6 +32,22 @@ describe("Tests the public API", () => {
     expect(filetypeinfo(bytes)[0].mime).toBe("video/mp4");
   });
 
+  it("detects txt", () => {
+    const buffer = fs.readFileSync(require.resolve("./testfiles/a.txt"));
+    const bytes = Array.prototype.slice.call(buffer, 0);
+    expect(filetypeinfo(bytes)).toHaveLength(1);
+    expect(filetypeinfo(bytes)[0].typename).toBe("txt");
+    expect(filetypeinfo(bytes)[0].mime).toBe("text/plain");
+  });
+
+  it("detects csv", () => {
+    const buffer = fs.readFileSync(require.resolve("./testfiles/a.csv"));
+    const bytes = Array.prototype.slice.call(buffer, 0);
+    expect(filetypeinfo(bytes)).toHaveLength(1);
+    expect(filetypeinfo(bytes)[0].typename).toBe("txt");
+    expect(filetypeinfo(bytes)[0].mime).toBe("text/csv");
+  });
+
   it("filetypeinfo", () => {
     const bytes = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
     expect(filetypeinfo(bytes)).toHaveLength(2);

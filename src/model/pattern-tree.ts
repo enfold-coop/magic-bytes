@@ -881,4 +881,44 @@ add("mpeg", ["0x00", "0x00", "0x01", "0xB3"], {
 
 add("hl2demo", ["48", "4C", "32", "44", "45", "4D", "4F"]);
 
+add("txtutf8", ["0xEF", "0xBB", "0xBF"], {
+  mime: "text/plain",
+  extension: "txt",
+});
+add("txtutf16le", ["0xFF", "0xFE",], {
+  mime: "text/plain",
+  extension: "txt",
+});
+add("txtutf32le", ["0xFE", "0xFF", "0x00", "0x00"], {
+  mime: "text/plain",
+  extension: "txt",
+});
+add("txtutf32be", ["0x00", "0x00", "0xFE", "0xFF"], {
+  mime: "text/plain",
+  extension: "txt",
+});
+
+add("csvutf8", ["0xEF", "0xBB", "0xBF"], {
+  mime: "text/csv",
+  extension: "csv",
+});
+add("csvutf16le", ["0xFF", "0xFE",], {
+  mime: "text/csv",
+  extension: "csv",
+});
+add("csvutf32le", ["0xFE", "0xFF", "0x00", "0x00"], {
+  mime: "text/csv",
+  extension: "csv",
+});
+add("csvutf32be", ["0x00", "0x00", "0xFE", "0xFF"], {
+  mime: "text/csv",
+  extension: "csv",
+});
+
+
+add("dicom", ["0x44", "0x49", "0x43", "0x4D"], {
+  mime: "application/dicom",
+  extension: "dcm",
+}, 128);
+
 export default (): Tree => tree as Tree;
