@@ -36,7 +36,7 @@ describe("Tests the public API", () => {
     const buffer = fs.readFileSync(require.resolve("./testfiles/a.txt"));
     const bytes = Array.prototype.slice.call(buffer, 0);
     expect(filetypeinfo(bytes)).toHaveLength(1);
-    expect(filetypeinfo(bytes)[0].typename).toBe("txt");
+    expect(filetypeinfo(bytes)[0].typename).toBe("ascii");
     expect(filetypeinfo(bytes)[0].mime).toBe("text/plain");
   });
 
@@ -44,8 +44,24 @@ describe("Tests the public API", () => {
     const buffer = fs.readFileSync(require.resolve("./testfiles/a.csv"));
     const bytes = Array.prototype.slice.call(buffer, 0);
     expect(filetypeinfo(bytes)).toHaveLength(1);
-    expect(filetypeinfo(bytes)[0].typename).toBe("txt");
-    expect(filetypeinfo(bytes)[0].mime).toBe("text/csv");
+    expect(filetypeinfo(bytes)[0].typename).toBe("ascii");
+    expect(filetypeinfo(bytes)[0].mime).toBe("text/plain");
+  });
+
+  it("detects utf8", () => {
+    const buffer = fs.readFileSync(require.resolve("./testfiles/utf8.txt"));
+    const bytes = Array.prototype.slice.call(buffer, 0);
+    expect(filetypeinfo(bytes)).toHaveLength(1);
+    expect(filetypeinfo(bytes)[0].typename).toBe("utf8");
+    expect(filetypeinfo(bytes)[0].mime).toBe("text/plain");
+  });
+
+  it("detects utf16", () => {
+    const buffer = fs.readFileSync(require.resolve("./testfiles/utf16be.txt"));
+    const bytes = Array.prototype.slice.call(buffer, 0);
+    expect(filetypeinfo(bytes)).toHaveLength(1);
+    expect(filetypeinfo(bytes)[0].typename).toBe("utf16be");
+    expect(filetypeinfo(bytes)[0].mime).toBe("text/plain");
   });
 
   it("filetypeinfo", () => {

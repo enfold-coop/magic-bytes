@@ -20,6 +20,15 @@ export const filetypeinfo = (
       return guessed;
     }
   }
+
+  if (bytes.every((v) => v >= 0 && v <= 127)) {
+    return [{
+      mime: 'text/plain',
+      extension: 'txt',
+      typename: 'ascii',
+    }];
+  }
+
   if (tree.noOffset === null) {
     return [];
   }
