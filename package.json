@@ -13,7 +13,7 @@
     "build": "tsc"
   },
   "repository": {
-    "url": "https://github.com/LarsKoelpin/magic-bytes",
+    "url": "https://github.com/enfold-coop/magic-bytes",
     "type": "git"
   },
   "author": "Lars Kölpin",
